@@ -1,4 +1,25 @@
-FROM node:20-slim AS base
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+# Use the official Node.js 20 image as the base image
+FROM node:20
+
+# Install PNPM globally
+RUN npm install -g pnpm@8
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the package.json and pnpm-lock.yaml files to the working directory
+COPY package.json pnpm-lock.yaml ./
+
+# Install project dependencies using PNPM
+RUN pnpm install
+
+# Copy the rest of the application code to the working directory
+COPY . .
+
+RUN pnpm build
+
+# Expose any necessary ports
+# EXPOSE 3000
+
+# Define any environment variables, if needed
+# ENV NODE_ENV=production
