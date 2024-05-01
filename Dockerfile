@@ -1,5 +1,5 @@
 # Use the official Node.js 20 image as the base image
-FROM node:20
+FROM node:alpine
 
 # Install PNPM globally
 RUN npm install -g pnpm@8
