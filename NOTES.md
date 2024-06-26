@@ -1,4 +1,5 @@
 nvmu
+pnpm store prune
 pnpm install
 pnpm build
 pnpm dev
