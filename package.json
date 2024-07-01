@@ -1,4 +1,5 @@
 {
+  "name": "ultimate-app-boilerplate",
   "private": true,
   "scripts": {
     "build": "turbo run build",

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.1",
+    "@olivercaine/ui-components": "workspace:1.1.0-0",
     "expo": "~51.0.14",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
