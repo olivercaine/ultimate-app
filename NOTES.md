@@ -45,3 +45,9 @@ CommandError: Cannot determine which native SDK version your project uses becaus
 **Cause**
 
 **Solution**
+
+Bump Expo version?
+
+```
+pnpm up expo --latest
+```
