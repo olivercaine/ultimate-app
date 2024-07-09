@@ -35,3 +35,13 @@ nvm use
 cd ./apps/mobile
 pnpm up expo
 ```
+
+## Cannot determine SDK version when building in Expo
+
+**Error**
+
+CommandError: Cannot determine which native SDK version your project uses because the module `expo` is not installed. Please install it with `yarn add expo` and try again.
+
+**Cause**
+
+**Solution**
