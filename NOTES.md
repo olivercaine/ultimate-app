@@ -1,8 +1,8 @@
-# Pre-requisites
+# Dev
+
+## Pre-requisites
 
 1. [NVM](https://github.com/nvm-sh/nvm)
-
-# Dev
 
 ```
 nvm use # or just manually install version in .nvmrc file
@@ -12,7 +12,11 @@ pnpm build
 pnpm dev
 ```
 
-# Build (requires account on expo.dev)
+# Build
+
+## Pre-requisites
+
+1. Account on [expo.dev](https://expo.dev)
 
 ```
 cd ./apps/mobile
