@@ -5,9 +5,10 @@
 1. [NVM](https://github.com/nvm-sh/nvm)
 
 ```
-nvm use # or just manually install version in .nvmrc file
+nvm use
 pnpm store prune
 pnpm install
+pnpm lint
 pnpm build
 pnpm dev
 ```
