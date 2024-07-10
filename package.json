@@ -1,5 +1,5 @@
 {
-  "name": "ultimate-app-boilerplate",
+  "name": "@olivercaine/ultimate-app-spike",
   "private": true,
   "scripts": {
     "build": "turbo run build",
