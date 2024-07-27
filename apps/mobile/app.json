@@ -3,7 +3,6 @@
     "name": "mobile",
     "slug": "mobile",
     "version": "1.0.0",
-    "sdkVersion": "51.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -25,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.olliecaine.mobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ea815078-1202-4e26-834f-bb22c00fe930"
+      }
     }
   }
 }
