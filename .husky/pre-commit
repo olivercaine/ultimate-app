@@ -2,3 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 pnpm lint-staged
+# pnpm test - currently gets stuck because it's configured to watch for changes
+pnpm build

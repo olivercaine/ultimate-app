@@ -5,11 +5,19 @@
 1. [NVM](https://github.com/nvm-sh/nvm)
 
 ```
-nvm use # or just manually install version in .nvmrc file
+nvm use
 pnpm store prune
 pnpm install
+pnpm lint
+pnpm test
 pnpm build
 pnpm dev
+```
+
+```
+cd ./apps/mobile
+npx expo install --check
+npx -y expo-doctor
 ```
 
 # Build
