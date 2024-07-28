@@ -6,10 +6,7 @@
     "monorepo": {
       "node": "20.11.0",
       "cache": {
-        "key": "turbo",
-        "customPaths": [
-          "../../node_modules/.cache/turbo"
-        ]
+        "key": "turbo"
       }
     },
     "development": {
