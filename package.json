@@ -1,4 +1,5 @@
 {
+  "name": "@olivercaine/ultimate-app-spike",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -7,7 +8,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "test": "turbo run test",
     "clean": "rimraf {apps,packages}/**/{node_modules,dist,.next,.turbo} -g && rimraf node_modules",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "install:docker": "docker run --rm -w /app -v ${PWD}:/app --expose 7000 -p 6006:6006 -p 3000:3000 $(docker build . -q) sh -c 'pnpm install && pnpm build'"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.6.1",

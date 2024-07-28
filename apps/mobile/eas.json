@@ -18,6 +18,13 @@
         "buildType": "apk"
       }
     },
+    "preview": {
+      "extends": "monorepo",
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
     "production": {
       "extends": "monorepo",
       "distribution": "store",
