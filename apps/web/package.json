@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "health-check": "pnpm run lint",
+    "health-check": "pnpm run lint && pnpm run build",
     "test": "vitest"
   },
   "dependencies": {
