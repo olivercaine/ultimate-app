@@ -14,6 +14,12 @@ pnpm build
 pnpm dev
 ```
 
+```
+cd ./apps/mobile
+npx expo install --check
+npx -y expo-doctor
+```
+
 # Build
 
 ## Pre-requisites
