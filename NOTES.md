@@ -18,6 +18,7 @@ pnpm dev
 cd ./apps/mobile
 npx expo install --check
 npx -y expo-doctor
+eas build --profile preview -p android
 ```
 
 # Build
