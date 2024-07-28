@@ -24,5 +24,6 @@ jobs:
           npm install -g pnpm@8.15.8
           pnpm install
           pnpm lint
+          pnpm health-check
           pnpm test
           pnpm build
