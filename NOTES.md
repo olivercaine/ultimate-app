@@ -2,7 +2,7 @@
 
 ## Pre-requisites
 
-1. [NVM](https://github.com/nvm-sh/nvm)
+1. [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm)
 
 ```
 nvm use
