@@ -1,4 +1,4 @@
-# Requires permission: <Repo> > Settings > General > "Allow GitHub Actions to create and approve pull requests"
+# Troubleshooting: https://github.com/marketplace/actions/actions-template-sync#troubleshooting
 
 name: Sync from upstream
 on:
