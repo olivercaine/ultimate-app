@@ -36,7 +36,7 @@ eas build --profile preview -p android
 
 Android: install using [Obtanium](https://github.com/ImranR98/Obtainium/releases/tag/v1.1.15)
 
-iOS: instructions coming soon
+iOS: instructions coming soon.
 
 ## Troubleshooting
 
