@@ -38,6 +38,11 @@ Android: install using [Obtanium](https://github.com/ImranR98/Obtainium/releases
 
 iOS: instructions coming soon.
 
+## Upgrading dependencies
+
+Root package: `pnpm update --latest`
+All sub-packages: `pnpm recursive update --latest`
+
 ## Troubleshooting
 
 ### "Expo version is out of date" or "Cannot determine SDK version when building in Expo"
