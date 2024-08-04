@@ -2,9 +2,9 @@
 
 name: Sync from upstream
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   # schedule:
   #   - cron: "0 0 1 * *"
   workflow_dispatch: # Enable manual trigger
