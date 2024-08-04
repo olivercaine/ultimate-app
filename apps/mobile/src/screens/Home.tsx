@@ -7,6 +7,7 @@ export function Home() {
     <View style={styles.container}>
       <Text>Hello World!</Text>
       <Text>1.0.0</Text>
+      <Text>App: mobile</Text>
       <StatusBar style="auto" />
     </View>
   );
