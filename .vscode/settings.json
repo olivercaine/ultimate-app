@@ -2,7 +2,7 @@
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "workbench.colorCustomizations": {
-    "titleBar.activeBackground": "#1941c2",
+    "titleBar.activeBackground": "#0e662d",
     "titleBar.activeForeground": "#ffffff"
-  },
+  }
 }
