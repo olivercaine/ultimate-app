@@ -60,7 +60,7 @@ CommandError: Cannot determine which native SDK version your project uses becaus
 
 **Solution**
 
-Trying bumping the Expo version using:
+Try bumping Expo version with:
 
 ```
 pnpm up expo --latest
