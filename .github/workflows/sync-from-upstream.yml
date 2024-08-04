@@ -2,12 +2,12 @@
 
 name: Sync from upstream
 on:
-  # push: # You probably want to uncomment these 3 lines
-  #   branches:
-  #     - main
-  workflow_dispatch: # Enable manual trigger
+  push:
+    branches:
+      - main
   # schedule:
   #   - cron: "0 0 1 * *"
+  workflow_dispatch: # Enable manual trigger
 jobs:
   repo-sync:
     runs-on: ubuntu-latest
@@ -17,11 +17,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        # with:
-        #   submodules: true
+        with:
+          # submodules: true
+          token: ${{ secrets.SYNC_FROM_UPSTREAM }} # You need to add this to your repository secrets. Read troubleshooting above.
+
       - name: actions-template-sync
         uses: AndreasAugustin/actions-template-sync@v2 # Docs: https://github.com/marketplace/actions/actions-template-sync
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           source_repo_path: olivercaine/ultimate-app
           upstream_branch: main
           is_pr_cleanup: true # Update when upstream branch is changed
