@@ -32,7 +32,11 @@ yarn dev
 pnpm dev
 ```
 
-## Building
+## Receiving updates from upstream
+
+Enable a trigger in `sync-from-upstream.yml`, e.g. `push`
+
+## Receiving updates
 
 To generate the project, just run:
 
