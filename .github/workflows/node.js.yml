@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: '20.11.0'
 
-      - name: Install dependencies
+      - name: Run health checks
         run: |
           npm install -g pnpm@8.15.8
           pnpm install
