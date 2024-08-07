@@ -27,7 +27,7 @@ jobs:
         uses: AndreasAugustin/actions-template-sync@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_repo_path: olivercaine/create-t3-turbo
+          source_repo_path: olivercaine/ultimate-app
           upstream_branch: main
           is_pr_cleanup: true # Update when upstream branch is changed
           is_keep_branch_on_pr_cleanup: true # Create new PR but keep existing branch
