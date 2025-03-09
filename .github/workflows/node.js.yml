@@ -1,4 +1,4 @@
-name: Build Docker Image
+name: PNPM install & health check
 
 on:
   push:
