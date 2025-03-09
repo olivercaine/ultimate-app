@@ -1,5 +1,7 @@
 ## Ultimate App
 
+[![PNPM install & health check](https://github.com/olivercaine/ultimate-app/actions/workflows/node.js.yml/badge.svg)](https://github.com/olivercaine/ultimate-app/actions/workflows/node.js.yml)
+
 Boilerplate for a monorepo with Husky, Commitlint, Jest, Supertest, React Testing Library, ESLint, Prettier, Turborepo, TypeScript, Expo, NestJS and Next.js.
 
 ## Installation
@@ -32,7 +34,11 @@ yarn dev
 pnpm dev
 ```
 
-## Building
+## Receiving updates from upstream
+
+Enable a trigger in `sync-from-upstream.yml`, e.g. `push`
+
+## Receiving updates
 
 To generate the project, just run:
 

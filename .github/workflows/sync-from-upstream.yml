@@ -1,0 +1,33 @@
+# Works OOTB when the source's git history is retained. Do this by clicking [+] next to your name in GitHub > Import repository > add source git url
+
+# Docs / troubleshooting: https://github.com/marketplace/actions/actions-template-sync#troubleshooting
+
+name: Sync from upstream
+on:
+  # push:
+  #   branches:
+  #     - main
+  # schedule:
+  #   - cron: "0 0 1 * *"
+  workflow_dispatch: # Enable manual trigger
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SYNC_FROM_UPSTREAM }} # Create a fine-grained account-level Personal Access Token ( https://github.com/settings/tokens?type=beta ), then add it to <repo settings> > Secrets and variables > Actions > Repository secrets
+          # submodules: true
+
+      - name: actions-template-sync # Requires <repo settings> > Actions > General > Allow GitHub Actions to create and approve pull requests, to be checked
+        uses: AndreasAugustin/actions-template-sync@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_repo_path: olivercaine/ultimate-app
+          upstream_branch: main
+          is_pr_cleanup: true # Update when upstream branch is changed
+          is_keep_branch_on_pr_cleanup: true # Create new PR but keep existing branch
