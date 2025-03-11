@@ -1,0 +1,30 @@
+# https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: ['**']
+  schedule:
+    - cron: '0 18 1 * *' # 1st of every month    
+  workflow_dispatch: # Enables running workflow manually  
+
+jobs:
+  build:
+    name: Build and test package
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [ 20 ]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        cache: 'npm'
+        node-version: ${{ matrix.node }}
+    - run: npm ci
+    - run: npm test

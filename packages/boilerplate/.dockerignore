@@ -1,4 +1,0 @@
-dist
-Dockerfile
-.dockerignore
-*.md

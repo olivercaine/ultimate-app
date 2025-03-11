@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<title>bonaroo-able test</title>
+<script src="https://unpkg.com/bonaroo-able@1.1.1/dist/bonaroo-able.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const definition = { foo: ["bar"] };
+  const abilities = ["foo", "bam"];
+  const result = Able.flatten(definition, abilities);
+
+  const code = document.createElement("code");
+  code.textContent = result.join(", ");
+  document.body.appendChild(code);
+});
+</script>

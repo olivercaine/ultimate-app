@@ -1,0 +1,46 @@
+{
+  "name": "@ultimate/math",
+  "version": "1.1.5",
+  "description": "A tiny library handling abilities",
+  "main": "dist/index.js",
+  "browser": "dist/bonaroo-able.min.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "rollup": "rollup -c",
+    "ci": "(npm run test-build && npm run rollup) & npm t & wait",
+    "prepublishOnly": "npm run ci && npm run rollup",
+    "preversion": "./preversion.sh",
+    "test": "jest",
+    "test-build": "npm run build && node test-build.js",
+    "version": "./version.sh",
+    "watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tobyhinloopen/bonaroo-able.git"
+  },
+  "keywords": [
+    "Abilities",
+    "Permissions"
+  ],
+  "author": "Charper Bonaroo BV",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/tobyhinloopen/bonaroo-able/issues"
+  },
+  "homepage": "https://github.com/tobyhinloopen/bonaroo-able#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "jest": "^26.4.2",
+    "rollup": "^1.27.2",
+    "rollup-plugin-babel-minify": "^9.1.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "ts-jest": "^26.4.0",
+    "typescript": "^3.7.2"
+  }
+}
