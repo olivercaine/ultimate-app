@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
-
+import { add } from '@ultimate/math'
 import { StatusBar } from "expo-status-bar";
+
 
 export function Home() {
   return (
@@ -9,6 +10,7 @@ export function Home() {
       <Text>1.0.0</Text>
       <Text>App: mobile</Text>
       <StatusBar style="auto" />
+      <p>{add(1,2)}</p>
     </View>
   );
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@olivercaine/typescript-library-boilerplate",
+  "name": "@ultimate/math",
   "version": "0.0.0",
   "description": "A simple tree-shakable TypeScript library boilerplate",
   "main": "typescript-library-boilerplate.bundle.js",

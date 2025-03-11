@@ -23,6 +23,7 @@
     "@types/react-dom": "^18.3.0",
     "@ultimate/eslint-config": "workspace:*",
     "@ultimate/tsconfig": "workspace:*",
+    "@ultimate/math": "workspace:*",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.19",
     "clsx": "^2.1.1",
