@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from "fs";
 
 const packageJson = JSON.parse(readFileSync("./dist/package.json").toString());
-const fieldsToUpdate = ["jsnext:main", "module", "types"];
+const fieldsToUpdate = ["main", "jsnext:main", "module", "types"];
 // eslint-disable-next-line pure/pure
 fieldsToUpdate.forEach((field) => {
   if (packageJson[field] && packageJson[field].startsWith("dist/")) {
