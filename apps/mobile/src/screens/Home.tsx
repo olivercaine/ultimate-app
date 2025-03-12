@@ -10,7 +10,7 @@ export function Home() {
       <Text>1.0.0</Text>
       <Text>App: mobile</Text>
       <StatusBar style="auto" />
-      <p>{add(1,2)}</p>
+      <p>Add: {add(2,3)}</p>
     </View>
   );
 }

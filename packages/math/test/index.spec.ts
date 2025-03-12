@@ -1,5 +1,5 @@
-import Able from "../src";
+import {add} from "../src";
 
-test("Able is exported", () => {
-  expect(Able).toBeInstanceOf(Object);
+test("add is exported", () => {
+  expect(add).toBeInstanceOf(Object);
 });

@@ -6,7 +6,7 @@ export default function Page() {
       <h1>Hello World!</h1>
       <p>1.0.0</p>
       <p>App: web</p>
-      <p>{add(1,2)}</p>
+      <p>Add: {add(2,3)}</p>
     </main>
   );
 }
