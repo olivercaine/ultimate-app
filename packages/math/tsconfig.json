@@ -3,9 +3,8 @@
     "outDir": "dist",
     "lib": ["es2016"],
     "sourceMap": true,
-    "declaration": true
+    "declaration": true,
+    "skipLibCheck": true // Skip library checks to avoid duplicate type issues
   },
-  "include": [
-    "./src/**/*.ts"
-  ]
+  "include": ["./src/**/*.ts"]
 }
