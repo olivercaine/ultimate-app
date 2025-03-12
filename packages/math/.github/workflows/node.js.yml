@@ -1,0 +1,85 @@
+# https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: ['**']
+  schedule:
+    - cron: '0 18 1 * *' # 1st of every month    
+  workflow_dispatch: # Enables running workflow manually  
+
+jobs:
+  build:
+    name: Build and test package
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [ 20 ]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        cache: 'npm'
+        node-version: ${{ matrix.node }}
+    - run: npm ci
+    - run: npm run health-check
+    - uses: actions/upload-artifact@v4.6.1
+      with:
+        name: dist
+        path: dist
+
+  package:
+    needs: [build]
+    name: Prepare package
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download dist
+      uses: actions/download-artifact@v4.1.7
+      with:
+        name: dist        
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14.x
+        cache: 'npm'        
+    - name: Pre-release
+      run: |
+        npm version prerelease --preid=$GITHUB_RUN_ID --no-git-tag-version
+        npm pack
+        ls
+    - name: Upload
+      uses: actions/upload-artifact@v4.6.1
+      with:
+        name: package
+        path: "./*.tgz"
+
+  health-check-docker:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm run health-check:docker
+
+  publish:
+    needs: [package]
+    name: Publish to GitHub Package Registry
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download package
+      uses: actions/download-artifact@v4.1.7
+      with:
+        name: package
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+        registry-url: https://npm.pkg.github.com/
+        scope: "@olivercaine"
+    - run: echo "registry=https://npm.pkg.github.com/@olivercaine" >> .npmrc
+    - run: npm publish $(ls *.tgz)
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}      
