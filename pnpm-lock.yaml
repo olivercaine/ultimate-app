@@ -41,9 +41,6 @@ importers:
       '@expo/metro-runtime':
         specifier: ~3.2.3
         version: 3.2.3(react-native@0.74.5)
-      '@ultimate/math':
-        specifier: workspace:^
-        version: link:../../packages/math
       expo:
         specifier: ~51.0.39
         version: 51.0.39(@babel/core@7.24.9)(@babel/preset-env@7.26.9)
@@ -166,9 +163,6 @@ importers:
 
   apps/web:
     dependencies:
-      '@ultimate/math':
-        specifier: workspace:^
-        version: link:../../packages/math
       next:
         specifier: 14.2.21
         version: 14.2.21(@babel/core@7.24.9)(react-dom@18.2.0)(react@18.2.0)
@@ -7274,7 +7268,7 @@ packages:
     engines: {node: '>= 10'}
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.0(@types/node@22.13.10)(typescript@5.5.4)
+      commitizen: 4.3.0(@types/node@10.17.60)(typescript@5.8.2)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
