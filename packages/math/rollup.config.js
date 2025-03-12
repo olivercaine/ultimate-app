@@ -1,19 +1,17 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import minify from 'rollup-plugin-babel-minify';
-import pkg from './package.json';
-
-export default [{
-  input: 'dist/index.js',
+export default {
   output: {
-    name: "Able",
-    file: pkg.browser,
-    format: 'iife',
-    sourcemap: true,
+    format: 'umd',
+    name: 'typescript-library-boilerplate'
   },
-  plugins: [
-    resolve(),
-    commonjs(),
-    minify({ comments: false }),
+  external: [
+    // put some third party libraries here
   ],
-}];
+  onwarn: ( warning ) => {
+      const skip_codes = [
+          'THIS_IS_UNDEFINED',
+          'MISSING_GLOBAL_NAME'
+      ];
+      if ( skip_codes.indexOf(warning.code) != -1 ) return;
+      console.error(warning);
+  }
+};

@@ -1,3 +1,22 @@
-dist/
+# Editor-specific
+.idea/
+*.sublime-project
+*.sublime-workspace
+.settings
+
+# Installed libs
 node_modules/
-.old-version
+typings/
+
+# Generated
+dist/
+tmp/
+coverage/
+img/
+spec-js/
+.nyc_output/
+
+# Misc
+npm-debug.log
+.DS_STORE
+.env

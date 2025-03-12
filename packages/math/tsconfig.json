@@ -1,10 +1,24 @@
 {
-  "compilerOptions": {
-    "outDir": "dist",
-    "lib": ["es2016"],
-    "sourceMap": true,
-    "declaration": true,
-    "skipLibCheck": true // Skip library checks to avoid duplicate type issues
+  "extends": "@olliecaine/tsconfig",
+  "compilerOptions": { // https://www.typescriptlang.org/tsconfig
+    "baseUrl": "src", // Set a base directory to resolve non-absolute module names.
+    "declaration": true, // Generate .d.ts files for every TypeScript or JavaScript file inside your project. These .d.ts files are type definition files which describe the external API of your module.
+    "diagnostics": true, // Used to output diagnostic information for debugging
+    "emitDecoratorMetadata": true, // Enables experimental support for emitting type metadata for decorators
+    "esModuleInterop": true, // Import non-ES modules as default imports.
+    "experimentalDecorators": true, // Enables experimental support for decorators
+    "lib": [
+      "es2015"
+    ],
+    "module": "commonjs", // https://www.typescriptlang.org/tsconfig#module
+    "noImplicitAny": false, // Don't throw errors by falling back to type any for JS imports https://www.typescriptlang.org/tsconfig#noImplicitAny
+    "outDir": "./dist", // If specified, .js (as well as .d.ts, .js.map, etc.) files will be emitted into this directory.
+    "types": [
+      "jest",
+      "node"
+    ]
   },
-  "include": ["./src/**/*.ts"]
+  "files": [
+    "src/index.ts"
+  ]
 }
