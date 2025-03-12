@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "concurrently 'npm install' 'npm run test:watch'",
     "dev:docker": "docker run --rm -it -w /app -v ${PWD}:/app $(docker build . -q) sh -c 'npm run dev'",
-    "lint": "eslint -c .eslintrc --ext .ts src",
+    "lint": "eslint -c .eslintrc.js --ext .ts src",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
     "test:watch": "npm test -- --watch",
