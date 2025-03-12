@@ -2,7 +2,7 @@
   "name": "@ultimate/math",
   "version": "0.0.0",
   "description": "A simple tree-shakable TypeScript library boilerplate",
-  "main": "typescript-library-boilerplate.bundle.js",
+  "main": "dist/typescript-library-boilerplate.bundle.js",
   "jsnext:main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
