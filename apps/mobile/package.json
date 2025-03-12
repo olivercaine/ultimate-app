@@ -33,6 +33,7 @@
     "@types/react": "~18.2.79",
     "@types/react-test-renderer": "^18.3.0",
     "@ultimate/eslint-config": "workspace:*",
+    "@ultimate/math": "workspace:^",
     "@ultimate/tsconfig": "workspace:*",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "babel-plugin-root-import": "^6.6.0",

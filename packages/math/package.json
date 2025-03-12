@@ -9,13 +9,13 @@
   "scripts": {
     "dev": "concurrently 'npm install' 'npm run test:watch'",
     "dev:docker": "docker run --rm -it -w /app -v ${PWD}:/app $(docker build . -q) sh -c 'npm run dev'",
-    "lint": "eslint -c .eslintrc.js --ext .ts src",
+    "lint": "eslint -c .eslintrc.js --ext .ts src --quiet",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
     "test:watch": "npm test -- --watch",
     "compile": "tsc",
     "build": "rimraf dist && tsc -p tsconfig-esm.json && rollup -c rollup.config.js dist/index.js > dist/typescript-library-boilerplate.bundle.js && cp package.json dist && cp package-lock.json dist && ts-node tools/cleanup.ts && cp README.md dist",
-    "health-check": "time concurrently --group --kill-others-on-fail 'npm run lint --quiet' 'npm run compile' 'npm run build' 'npm test'",
+    "health-check": "time concurrently --group --kill-others-on-fail 'npm run lint' 'npm run compile' 'npm run build' 'npm test'",
     "health-check:docker": "docker run --rm -w /app -v ${PWD}:/app $(docker build . -q) sh -c 'npm ci && npm run health-check'",
     "commit": "git-cz"
   },
@@ -42,8 +42,8 @@
   },
   "homepage": "https://github.com/goldenbearkin/typescript-library-boilerplate#readme",
   "devDependencies": {
-    "@olliecaine/eslint-config": "^1.0.8",
-    "@olliecaine/tsconfig": "^1.0.11",
+    "@olliecaine/eslint-config": "^1.0.13",
+    "@olliecaine/tsconfig": "^1.0.18",
     "@types/jest": "^29.5.11",
     "@types/node": "10.17.60",
     "@typescript-eslint/eslint-plugin": "4.33.0",
