@@ -43,6 +43,19 @@ iOS: instructions coming soon.
 Root package: `pnpm update --latest`
 All sub-packages: `pnpm recursive update --latest`
 
+## How to add a new package (in progress)
+
+```
+npm run add-package
+nvmu && pnpm install
+```
+
+Add a dependency to a package
+
+```
+pnpm add -D ts-retry-promise --filter @olivercaine/typescript-library-boilerplate
+```
+
 ## Troubleshooting
 
 ### "Expo version is out of date" or "Cannot determine SDK version when building in Expo"
