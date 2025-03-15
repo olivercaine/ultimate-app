@@ -1,4 +1,4 @@
-import { add } from '@ultimate/math'
+import { add } from '@ultimate/package'
 
 export default function Page() {
   return (

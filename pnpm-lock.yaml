@@ -41,9 +41,9 @@ importers:
       '@expo/metro-runtime':
         specifier: ~3.2.3
         version: 3.2.3(react-native@0.74.5)
-      '@ultimate/math':
+      '@ultimate/package':
         specifier: workspace:^
-        version: link:../../packages/math
+        version: link:../../packages/package
       expo:
         specifier: ~51.0.39
         version: 51.0.39(@babel/core@7.24.9)(@babel/preset-env@7.26.9)
@@ -166,9 +166,9 @@ importers:
 
   apps/web:
     dependencies:
-      '@ultimate/math':
+      '@ultimate/package':
         specifier: workspace:^
-        version: link:../../packages/math
+        version: link:../../packages/package
       next:
         specifier: 14.2.21
         version: 14.2.21(@babel/core@7.24.9)(react-dom@18.2.0)(react@18.2.0)
@@ -258,7 +258,7 @@ importers:
         specifier: ^7.33.2
         version: 7.35.0(eslint@8.57.0)
 
-  packages/math:
+  packages/package:
     devDependencies:
       '@olliecaine/eslint-config':
         specifier: ^1.0.13

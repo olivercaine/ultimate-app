@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { StatusBar } from "expo-status-bar";
 
-import { add } from '@ultimate/math'
+import { add } from '@ultimate/package'
 
 export function Home() {
   return (
