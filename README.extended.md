@@ -46,14 +46,7 @@ All sub-packages: `pnpm recursive update --latest`
 ## How to add a new package (in progress)
 
 ```
-git clone git@github.com:olivercaine/typescript-library-boilerplate.git ./packages/my-package
-```
-
-```
-Change 'name' in ./packages/my-package/package.json
-```
-
-```
+npm run add-package
 nvmu && pnpm install
 ```
 
