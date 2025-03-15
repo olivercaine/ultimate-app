@@ -5,19 +5,14 @@ module.exports ={
     "standard",
     "@olliecaine/eslint-config"
   ],
-  settings: {
-    react: {
-      version: "detect"
-    }
-  },
   plugins: [
     "promise",
     "pure"
   ],
   env: {
     browser : true,
-    jest : true,
-    node: true
+    jest    : true,
+    node    : true
   },
   globals: {
     expect       : false,
