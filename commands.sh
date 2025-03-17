@@ -11,6 +11,6 @@ function add_package { # `. ./commands.sh && add_package`
     exit 1
   fi
 
-  git clone git@github.com:olivercaine/typescript-library-boilerplate.git packages/$packageName && rm -rf packages/$packageName/.git
+  git clone https://github.com/olivercaine/typescript-library-boilerplate.git packages/$packageName && rm -rf packages/$packageName/.git
   sed -i.bak "s/\"name\": \".*\"/\"name\": \"@olliecaine\/$packageName\"/" packages/$packageName/package.json
 }
