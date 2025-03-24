@@ -7,7 +7,7 @@
 ```
 nvm use
 pnpm store prune
-pnpm install
+pnpm install --frozen-lockfile
 pnpm lint
 pnpm test
 pnpm build
