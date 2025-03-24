@@ -1,12 +1,13 @@
 {
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#167abf",
+    "titleBar.activeForeground": "#ffffff"
+  },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "explicit"
   },
   "editor.formatOnSave": true,
-  "workbench.colorCustomizations": {
-    "titleBar.activeForeground": "#5fe8a1"
-  },
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "eslint.run": "onType",
   "eslint.format.enable": true,
@@ -18,5 +19,6 @@
   "eslint.codeActionsOnSave.mode": "problems",
   "diffEditor.ignoreTrimWhitespace": false,
   "typescript.format.semicolons": "remove",
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "jest.runMode": "on-demand"
 }
