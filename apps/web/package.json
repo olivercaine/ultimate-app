@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "health-check": "pnpm run lint && pnpm run build",
-    "test": "vitest"
+    "test": "vitest run"
   },
   "dependencies": {
     "@ultimate/package": "workspace:^",
