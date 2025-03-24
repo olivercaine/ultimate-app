@@ -18,6 +18,17 @@ jobs:
         with:
           node-version: '20.11.0'
 
+      # Add Turborepo cache
+      - name: Cache Turborepo
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.pnpm-store
+            **/node_modules/.cache/turbo
+          key: ${{ runner.os }}-turbo-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-          
+
       - name: Install dependencies
         run: |
           npm install -g pnpm@8.15.8
