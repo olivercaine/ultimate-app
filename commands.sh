@@ -13,8 +13,9 @@ function add_package { # `. ./commands.sh && add_package mynewpackage`
   fi
 
   cp -r packages/package packages/$packageName
+  # git clone --depth 1 https://github.com/olivercaine/typescript-library-boilerplate.git -b v20250325001649 packages/$packageName && rm -rf packages/$packageName/.git
   sed -i.bak "s/\"name\": \".*\"/\"name\": \"$packageNamespace\/$packageName\"/" packages/$packageName/package.json
   rm "packages/$packageName/package.json.bak"
-  rm "packages/$packageName/package-lock.json"
-  pnpm install && pnpm run build --filter $packageNamespace/$packageName
+  pnpm install --filter $packageNamespace/$packageName
+  pnpm run build --filter $packageNamespace/$packageName
 }
