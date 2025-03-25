@@ -6,8 +6,7 @@ module.exports = {
     '@olliecaine/eslint-config'
   ],
   plugins: [
-    'promise',
-    'pure'
+    'promise'
   ],
   env: {
     browser: true,
