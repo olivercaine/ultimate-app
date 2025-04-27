@@ -13,7 +13,7 @@ pipelines:
           - corepack prepare pnpm@10.9.0 --activate
           - pnpm install --frozen-lockfile
           - pnpm run lint
-          - pnpm run test
           - pnpm run build
+          - pnpm run test
         caches:
           - pnpm
