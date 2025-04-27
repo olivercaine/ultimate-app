@@ -1,38 +1,24 @@
+pipelines:
+  default:
+    - step:
+        name: PNPM install & health check
+        image: ubuntu:latest
+        caches:
+          - node
+          - pnpm
+          - turbo
+        script:
+          - apt-get update && apt-get install -y curl
+          - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+          - apt-get install -y nodejs
+          - npm install -g pnpm@8.15.3
+          - pnpm install --frozen-lockfile
+          - pnpm lint
+          # - pnpm test
+          - pnpm build
+          # - pnpm health-check
+
 definitions:
   caches:
     pnpm: .pnpm-store
     turbo: .turbo
-  steps:
-    - step: &Install
-        name: Install
-        caches:
-          - pnpm
-          - turbo
-        script:
-          - npm install -g pnpm@8.15.8
-          - pnpm install --frozen-lockfile
-
-    - step: &Lint
-        name: Lint
-        caches:
-          - pnpm
-          - turbo
-        script:
-          - npm install -g pnpm@8.15.8 && pnpm install --frozen-lockfile # TODO - install to image
-          - pnpm lint
-
-    - step: &Build
-        name: Build
-        caches:
-          - pnpm
-          - turbo
-        script:
-          - npm install -g pnpm@8.15.8 && pnpm install --frozen-lockfile # TODO - install to image
-          - pnpm build
-
-pipelines:
-  default:
-    - step: *Install
-    - parallel:
-        - step: *Lint
-        - step: *Build
