@@ -9,7 +9,7 @@ pipelines:
         services:
           - docker  
         script:
-          - docker run --rm -w /app -v ${PWD}:/app $(docker build . -q) sh -c 'pnpm install --frozen-lockfile && pnpm run lint'
+          - docker run --rm -w /app -v ${PWD}:/app $(docker build . -q) sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build'
 
 definitions:
   caches:
