@@ -1,12 +1,25 @@
-# docker build . -t olliecaine/dev:node20.11alpinePNPM8.15.3arm64
-# docker push olliecaine/dev:node20.11alpinePNPM8.15.3arm64
-# FROM --platform=linux/amd64 node:20.11.0-alpine
-FROM olliecaine/dev:node20.11alpinePNPM8.15.3arm64
+# Use the official Node.js 20 image as the base image
+FROM node:alpine
 
+# Install PNPM globally
+RUN npm install -g pnpm@8
+
+# Set the working directory in the container
 WORKDIR /app
 
-# Verify Node.js version
-RUN node --version
+# Copy the package.json and pnpm-lock.yaml files to the working directory
+COPY package.json pnpm-lock.yaml ./
 
-# Install pnpm@8.15.3 and verify pnpm version
-RUN npm install -g pnpm@8.15.3 && pnpm --version
+# Install project dependencies using PNPM
+RUN pnpm install
+
+# Copy the rest of the application code to the working directory
+COPY . .
+
+RUN pnpm build
+
+# Expose any necessary ports
+# EXPOSE 3000
+
+# Define any environment variables, if needed
+# ENV NODE_ENV=production
