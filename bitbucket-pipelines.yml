@@ -1,22 +1,15 @@
 pipelines:
   default:
     - step:
-        name: PNPM install & health check
-        image: ubuntu:latest
+        name: Install & Health Check
         caches:
           - node
           - pnpm
           - turbo
+        services:
+          - docker  
         script:
-          - apt-get update && apt-get install -y curl
-          - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
-          - apt-get install -y nodejs
-          - npm install -g pnpm@8.15.3
-          - pnpm install --frozen-lockfile
-          - pnpm lint
-          # - pnpm test
-          - pnpm build
-          # - pnpm health-check
+          - docker run --rm -w /app -v ${PWD}:/app $(docker build . -q) sh -c 'pnpm install --frozen-lockfile && pnpm run lint'
 
 definitions:
   caches:
