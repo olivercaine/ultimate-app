@@ -1,3 +1,8 @@
+definitions:
+  caches:
+    pnpm: .pnpm-store
+    turbo: .turbo
+
 pipelines:
   default:
     - step:
@@ -9,9 +14,8 @@ pipelines:
         services:
           - docker  
         script:
-          - docker run --rm -w /app -v ${PWD}:/app $(docker build . -q) sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build'
+          - mkdir -p .pnpm-store .turbo
+          - chmod -R 777 .pnpm-store .turbo
+          - docker run --rm -w /app -v $BITBUCKET_CLONE_DIR/.pnpm-store:/app/.pnpm-store -v $BITBUCKET_CLONE_DIR/.turbo:/app/.turbo -v ${PWD}:/app --user $(id -u):$(id -g) $(docker build . -q) sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build'
 
-definitions:
-  caches:
-    pnpm: .pnpm-store
-    turbo: .turbo
+
