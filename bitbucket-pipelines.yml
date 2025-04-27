@@ -9,11 +9,11 @@ pipelines:
         name: Install & Health Check
         timeout: 10  
         caches:
-          - node
           - pnpm
           - turbo
         services:
           - docker  
+        size: 8x
         script:
           - mkdir -p .pnpm-store .turbo
           - chmod -R 777 .pnpm-store .turbo
@@ -23,6 +23,5 @@ pipelines:
               -v $BITBUCKET_CLONE_DIR/.pnpm-store:/app/.pnpm-store \
               -v $BITBUCKET_CLONE_DIR/.turbo:/app/.turbo \
               -v ${PWD}:/app \
-              --user $(id -u):$(id -g) \
               $(docker build . -q) \
               sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build'
