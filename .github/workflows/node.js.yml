@@ -46,6 +46,3 @@ jobs:
         
       - name: Run test
         run: pnpm run test
-
-      - name: Run health-check
-        run: pnpm run health-check

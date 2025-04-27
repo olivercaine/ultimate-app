@@ -5,12 +5,14 @@
       "cache": false,
       "persistent": true
     },
+    "lint": {},
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },
-    "test": {},
-    "health-check": {},
-    "lint": {}
+    "test": {
+      "dependsOn": ["^build"]
+    },
+    "health-check": {}
   }
 }
