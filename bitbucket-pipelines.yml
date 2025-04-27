@@ -14,6 +14,6 @@ pipelines:
           - pnpm install --frozen-lockfile
           - pnpm run lint
           - pnpm run build
-          # - pnpm run test
+          - pnpm run test
         caches:
           - pnpm
