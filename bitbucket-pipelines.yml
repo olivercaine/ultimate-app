@@ -10,7 +10,7 @@ pipelines:
         script:
           - npm install --global corepack@latest
           - corepack enable
-          - corepack prepare pnpm@8.15.3 --activate
+          - corepack prepare pnpm@10.9.0 --activate
           - pnpm install
           - pnpm run lint
           - pnpm run build
