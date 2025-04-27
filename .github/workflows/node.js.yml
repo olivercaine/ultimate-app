@@ -11,10 +11,12 @@ jobs:
     timeout-minutes: 10  # Enforce 10-minute job timeout
     steps:
     - uses: actions/checkout@v4
+    
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
         version: 10.9.0
+    
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
@@ -22,17 +24,12 @@ jobs:
         cache: 'pnpm'
     
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile
-
-    - name: Run lint
-      run: pnpm run lint
-
-    - name: Run health-check
-      run: pnpm run health-check
-
-    - name: Run tests
-      run: pnpm test
-
-    - name: Build project
-      run: pnpm run build
-  
+      run: |
+        npm install --global corepack@latest
+        corepack enable
+        corepack prepare pnpm@10.9.0 --activate
+        pnpm install --frozen-lockfile
+        pnpm lint
+        pnpm health-check
+        pnpm test
+        pnpm build
