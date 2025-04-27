@@ -3,6 +3,10 @@ definitions:
     pnpm: .pnpm-store
     turbo: .turbo
 
+services:
+  docker:
+    memory: 7168
+
 pipelines:
   default:
     - step:
