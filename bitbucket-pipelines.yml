@@ -11,7 +11,7 @@ pipelines:
   default:
     - step:
         name: Install & Health Check
-        timeout: 10  
+        timeout: 20  
         caches:
           - pnpm
           - turbo
