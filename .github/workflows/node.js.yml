@@ -1,37 +1,32 @@
-name: PNPM install & health check
+name: PNPM Install & Health Check
 
 on:
   push:
-    branches: [ "**" ]
-  workflow_dispatch: # Enables running workflow manually    
+    branches: ['**']  # Run on all branches
+  pull_request:
+    branches: ['**']  # Run on all PRs
+  workflow_dispatch:  # Enable manual trigger
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10  # Enforce 10-minute job timeout
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.11.0
-          cache: 'pnpm'
+          cache: pnpm  # Cache pnpm store automatically
 
       - name: Enable Corepack and activate pnpm 10.9.0
         run: |
-          npm install --global corepack@latest
           corepack enable
           corepack prepare pnpm@10.9.0 --activate
-
-      - name: Restore pnpm store cache
-        uses: actions/cache@v3
-        with:
-          path: .pnpm-store
-          key: pnpm-store-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            pnpm-store-${{ runner.os }}-
+          pnpm config set store-dir ~/.pnpm-store  # Explicitly set store directory
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -41,3 +36,21 @@ jobs:
 
       - name: Build project
         run: pnpm run build
+
+      # Optional: AMD64 Docker build (uncomment if needed)
+      # - name: Cache Docker layers
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: /tmp/docker-cache
+      #     key: ${{ runner.os }}-docker-${{ hashFiles('Dockerfile', 'pnpm-lock.yaml') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-docker-
+      #
+      # - name: Load Docker cache
+      #   run: mkdir -p /tmp/docker-cache && docker load -i /tmp/docker-cache/cache.tar || echo "No Docker cache"
+      #
+      # - name: Build AMD64 Docker image
+      #   run: docker build --platform linux/amd64 -t app:amd64 .
+      #
+      # - name: Save Docker cache
+      #   run: docker save $(docker images -q app:amd64 | sort -u) -o /tmp/docker-cache/cache.tar
