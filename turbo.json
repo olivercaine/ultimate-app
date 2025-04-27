@@ -10,8 +10,11 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },
-    "test": {
-      "dependsOn": ["build"]
+    "@ultimate/mobile": {
+      "dependsOn": ["@ultimate/package#build"]
+    },
+    "@ultimate/new-web": {
+      "dependsOn": ["@ultimate/package#build"]
     },
     "health-check": {}
   }
