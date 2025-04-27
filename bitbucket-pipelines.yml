@@ -27,5 +27,5 @@ pipelines:
               -v $BITBUCKET_CLONE_DIR/.pnpm-store:/app/.pnpm-store \
               -v $BITBUCKET_CLONE_DIR/.turbo:/app/.turbo \
               -v ${PWD}:/app \
-              $(docker build . -q) \
+              olliecaine/dev:node20.11alpinePNPM8.15.3arm64\
               sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build'
