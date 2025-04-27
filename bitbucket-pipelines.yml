@@ -1,31 +1,19 @@
 definitions:
   caches:
-    pnpm: .pnpm-store
-    turbo: .turbo
-
-services:
-  docker:
-    memory: 7168
+    pnpm: $BITBUCKET_CLONE_DIR/.pnpm-store
 
 pipelines:
-  default:
-    - step:
-        name: Install & Health Check
-        timeout: 20  
-        caches:
-          - pnpm
-          - turbo
-        services:
-          - docker  
-        size: 8x
-        script:
-          - mkdir -p .pnpm-store .turbo
-          - chmod -R 777 .pnpm-store .turbo
-          - |
-            docker run --rm \
-              -w /app \
-              -v $BITBUCKET_CLONE_DIR/.pnpm-store:/app/.pnpm-store \
-              -v $BITBUCKET_CLONE_DIR/.turbo:/app/.turbo \
-              -v ${PWD}:/app \
-              olliecaine/dev:node20.11alpinePNPM8.15.3arm64\
-              sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build'
+  pull-requests:
+    "**":
+      - step:
+          name: Build and test
+          image: node:20.11.0
+          script:
+            - npm install --global corepack@latest
+            - corepack enable
+            - corepack prepare pnpm@8.15.3 --activate
+            - pnpm install
+            - pnpm run lint
+            - pnpm run build # Replace with your build/test…etc. commands
+          caches:
+            - pnpm
