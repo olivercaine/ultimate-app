@@ -30,6 +30,10 @@ RUN bash -c "source $NVM_DIR/nvm.sh && \
     corepack prepare pnpm@10.10.0 --activate"
 
 # Verify everything works
-RUN node -v && npm -v && pnpm -v && corepack --version
+RUN nvm --version
+RUN node --version
+RUN npm --version
+RUN corepack --version
+RUN pnpm --version
 
 CMD ["node"]
