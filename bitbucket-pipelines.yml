@@ -1,9 +1,9 @@
 definitions:
   caches:
     pnpm: $BITBUCKET_CLONE_DIR/.pnpm-store
-  # services:
-  #   docker: 
-  #     memory: 4096
+  services:
+    docker: 
+      memory: 12000
 
 pipelines:
   default:
