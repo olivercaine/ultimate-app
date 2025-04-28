@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: olliecaine/node-20-corepack-pnpm:1.0
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
