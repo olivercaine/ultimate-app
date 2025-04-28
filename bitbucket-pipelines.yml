@@ -19,9 +19,9 @@ pipelines:
           - docker build . -f Dockerfile.grok.node -t ci
           - docker image ls
           - >
-            docker run --rm \
-            -v ${PWD}/.pnpm-store:/root/.pnpm-store \
-            -v ${PWD}:/app \
+            docker run --rm
+            -v ${PWD}/.pnpm-store:/root/.pnpm-store
+            -v ${PWD}:/app
             -w /app ci sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build && pnpm run test'
         caches:
           - pnpm
