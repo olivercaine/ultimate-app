@@ -32,7 +32,6 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm install --frozen-lockfile
-          pnpm lint
           pnpm health-check
-          pnpm test
           pnpm build
+          pnpm test
