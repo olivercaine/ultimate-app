@@ -7,27 +7,22 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: olliecaine/node-20-corepack-pnpm:1.0
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
       
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20.11.0'
-
       # Add Turborepo cache
-      - name: Cache Turborepo
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.pnpm-store
-            **/node_modules/.cache/turbo
-          key: ${{ runner.os }}-turbo-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-turbo-          
+      # - name: Cache Turborepo
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: |
+      #       ~/.pnpm-store
+      #       **/node_modules/.cache/turbo
+      #     key: ${{ runner.os }}-turbo-${{ hashFiles('**/pnpm-lock.yaml') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-turbo-          
 
       - name: Install dependencies
         run: |
