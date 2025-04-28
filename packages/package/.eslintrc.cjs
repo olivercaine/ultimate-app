@@ -6,7 +6,8 @@ module.exports = {
     '@olliecaine/eslint-config'
   ],
   plugins: [
-    'promise'
+    'promise',
+    'eslint-plugin-jest'
   ],
   env: {
     browser: true,
@@ -27,6 +28,7 @@ module.exports = {
     'no-case-declarations': 2,
     'comma-dangle': 'off',
     'no-undef': 'off',
-    'one-var': 'off'
+    'one-var': 'off',
+    'jest/padding-around-all': 'error'
   }
 }

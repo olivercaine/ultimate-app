@@ -30,7 +30,7 @@ importers:
         specifier: ^3.3.3
         version: 3.5.3
       turbo:
-        specifier: ^2.0.11
+        specifier: ^2.1.3
         version: 2.5.2
       typescript:
         specifier: ^5.5.4
@@ -264,7 +264,7 @@ importers:
         specifier: ^1.0.15
         version: 1.0.15(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
       '@olliecaine/tsconfig':
-        specifier: ^1.0.18
+        specifier: ^1.0.28
         version: 1.0.28
       '@rollup/plugin-commonjs':
         specifier: ^25.0.8
