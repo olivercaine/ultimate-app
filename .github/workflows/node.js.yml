@@ -31,9 +31,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install -g pnpm@10.10.0
+          corepack enable
+          corepack prepare pnpm@10.10.0 --activate
           pnpm install --frozen-lockfile
           pnpm lint
           pnpm build
           pnpm test
           pnpm health-check
+          
