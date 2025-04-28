@@ -1,16 +1,16 @@
 definitions:
   caches:
     pnpm: $BITBUCKET_CLONE_DIR/.pnpm-store
+  services:
+    docker: 
+      memory: 1024
 
 pipelines:
   default:
     - step:
         name: Install, lint, build and test
-        image: olliecaine/ultimate-app-nvm-20-pnpm-10:1.0
+        # image: olliecaine/ultimate-app-nvm-20-pnpm-10:1.0
         script:
-          - pnpm install --frozen-lockfile
-          - pnpm run lint
-          - pnpm run build
-          - pnpm run test
+          - docker run --rm -w /app -v ${PWD}/.pnpm-store:/root/.pnpm-store -v ${PWD}:/app $(docker build . -f Dockerfile.grok -q) sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build && pnpm run test'
         caches:
           - pnpm
