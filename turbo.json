@@ -10,12 +10,7 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },
-    "@ultimate/mobile": {
-      "dependsOn": ["@ultimate/package#build"]
-    },
-    "@ultimate/new-web": {
-      "dependsOn": ["@ultimate/package#build"]
-    },
+    "test": {},
     "health-check": {}
   }
 }
