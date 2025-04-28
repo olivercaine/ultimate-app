@@ -11,9 +11,9 @@ pipelines:
         name: Install, lint, build and test
         services:
           - docker
-        runs-on:
-          - self.hosted
-          - linux.arm64
+        # runs-on:
+        #   - self.hosted
+        #   - linux.arm64
         # image: olliecaine/ultimate-app-nvm-20-pnpm-10:1.0
         script:
           - >
