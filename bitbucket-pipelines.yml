@@ -9,6 +9,8 @@ pipelines:
   default:
     - step:
         name: Install, lint, build and test
+        services:
+          - docker
         # image: olliecaine/ultimate-app-nvm-20-pnpm-10:1.0
         script:
           - docker run --rm -w /app -v ${PWD}/.pnpm-store:/root/.pnpm-store -v ${PWD}:/app $(docker build . -f Dockerfile.grok -q) sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build && pnpm run test'
