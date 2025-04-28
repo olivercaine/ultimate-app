@@ -17,13 +17,12 @@ pipelines:
         # image: olliecaine/ultimate-app-nvm-20-pnpm-10:1.0
         script:
           - docker build . -f Dockerfile.grok.node -t ci
+          - docker image ls
           - >
             docker run --rm \
-            -w /app \
             -v ${PWD}/.pnpm-store:/root/.pnpm-store \
             -v ${PWD}:/app \
-            ci \
-            sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build && pnpm run test'
+            -w /app ci sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build && pnpm run test'
         caches:
           - pnpm
           - docker
