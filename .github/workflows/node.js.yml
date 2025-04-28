@@ -37,6 +37,6 @@ jobs:
           corepack prepare pnpm@10.10.0 --activate
           pnpm install --frozen-lockfile
           pnpm lint
-          pnpm health-check
-          pnpm test
           pnpm build
+          pnpm test
+          pnpm health-check
