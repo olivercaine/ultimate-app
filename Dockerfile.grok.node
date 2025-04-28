@@ -1,0 +1,19 @@
+FROM node:20.11.0-slim
+
+# Set working directory
+WORKDIR /app
+
+# Enable Corepack
+RUN corepack enable
+
+# Install PNPM
+RUN corepack prepare pnpm@10.10.0 --activate
+
+# Show versions
+RUN node --version
+RUN npm --version
+RUN corepack --version
+RUN pnpm --version
+
+# Default command to start a bash shell
+CMD ["/bin/bash"]

@@ -21,7 +21,7 @@ pipelines:
             -w /app \
             -v ${PWD}/.pnpm-store:/root/.pnpm-store \
             -v ${PWD}:/app \
-            $(docker build . -f Dockerfile.chatgpt -q) \
+            $(docker build . -f Dockerfile.grok.node -q) \
             sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build && pnpm run test'
         caches:
           - pnpm
