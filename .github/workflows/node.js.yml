@@ -6,26 +6,36 @@ on:
   workflow_dispatch: # Enables running workflow manually    
 
 jobs:
-  build-and-test:
-    runs-on: olliecaine/ultimate-app-nvm-20-pnpm-10:1.0
+  build:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v2
         with:
           node-version: '20.11.0'
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      # Add Turborepo cache
+      - name: Cache Turborepo
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.pnpm-store
+            **/node_modules/.cache/turbo
+          key: ${{ runner.os }}-turbo-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-          
 
-      - name: Run lint
-        run: pnpm run lint
-        
-      - name: Run build
-        run: pnpm run build
-        
-      - name: Run test
-        run: pnpm run test
+      - name: Install dependencies
+        run: |
+          npm install --global corepack@latest
+          corepack enable
+          corepack prepare pnpm@10.9.0 --activate
+          pnpm install --frozen-lockfile
+          pnpm lint
+          pnpm health-check
+          pnpm test
+          pnpm build
