@@ -10,7 +10,7 @@ pipelines:
         script:
           - npm install --global corepack@latest
           - corepack enable
-          - corepack prepare pnpm@10.9.0 --activate
+          - corepack prepare pnpm@10.10.0 --activate
           - pnpm install --frozen-lockfile
           - pnpm run lint
           - pnpm run build

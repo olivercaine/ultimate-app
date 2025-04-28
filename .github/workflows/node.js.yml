@@ -25,7 +25,7 @@ jobs:
         run: corepack enable
 
       - name: Prepare pnpm
-        run: corepack prepare pnpm@10.9.0 --activate
+        run: corepack prepare pnpm@10.10.0 --activate
 
       - name: Cache pnpm store
         uses: actions/cache@v4
