@@ -3,7 +3,7 @@ definitions:
     pnpm: $BITBUCKET_CLONE_DIR/.pnpm-store
   services:
     docker: 
-      memory: 1024
+      memory: 4096
 
 pipelines:
   default:
