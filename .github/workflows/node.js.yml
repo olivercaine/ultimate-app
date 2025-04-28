@@ -1,4 +1,4 @@
-name: PNPM install & health check
+name: Install, lint, build and test
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: olliecaine/ultimate-app-nvm-20-pnpm-10:1.0
 
     steps:
       - name: Checkout code
@@ -17,23 +17,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.11.0'
-
-      - name: Install corepack
-        run: npm install --global corepack@latest
-
-      - name: Enable corepack
-        run: corepack enable
-
-      - name: Prepare pnpm
-        run: corepack prepare pnpm@10.10.0 --activate
-
-      - name: Cache pnpm store
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

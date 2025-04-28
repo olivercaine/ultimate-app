@@ -1,0 +1,35 @@
+FROM ubuntu:22.04
+
+WORKDIR /app
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install required dependencies
+RUN apt-get update && \
+    apt-get install -y curl build-essential ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install NVM
+ENV NVM_DIR=/root/.nvm
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# Install Node.js and enable Corepack
+RUN bash -c "source $NVM_DIR/nvm.sh && \
+    nvm install 20.11.0 && \
+    nvm use 20.11.0 && \
+    nvm alias default 20.11.0 && \
+    corepack enable"
+
+# Set environment variables so Node and Corepack are available in all future layers
+ENV NODE_VERSION=20.11.0
+ENV PATH=$NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+# Install PNPM using Corepack
+RUN bash -c "source $NVM_DIR/nvm.sh && \
+    nvm use $NODE_VERSION && \
+    corepack prepare pnpm@10.10.0 --activate"
+
+# Verify everything works
+RUN node -v && npm -v && pnpm -v && corepack --version
+
+CMD ["node"]
