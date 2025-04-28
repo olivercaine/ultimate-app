@@ -1,7 +1,5 @@
 FROM ubuntu:22.04
 
-WORKDIR /app
-
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install required dependencies
@@ -29,11 +27,12 @@ RUN bash -c "source $NVM_DIR/nvm.sh && \
     nvm use $NODE_VERSION && \
     corepack prepare pnpm@10.10.0 --activate"
 
+# Optional: if your project needs pnpm install, add it in context with proper lockfile
+# COPY . /app
+# WORKDIR /app
+# RUN pnpm install --frozen-lockfile
+
 # Verify everything works
-RUN nvm --version
-RUN node --version
-RUN npm --version
-RUN corepack --version
-RUN pnpm --version
+RUN node -v && npm -v && pnpm -v && corepack --version
 
 CMD ["node"]

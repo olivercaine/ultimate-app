@@ -34,11 +34,11 @@ RUN . $NVM_DIR/nvm.sh \
 RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> /root/.bashrc
 RUN echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> /root/.bashrc
 
-RUN nvm --version
-RUN node --version
-RUN npm --version
-RUN corepack --version
-RUN pnpm --version
+RUN sh nvm --version
+RUN sh node --version
+RUN sh npm --version
+RUN sh corepack --version
+RUN sh pnpm --version
 
 # Default command to start a bash shell
 CMD ["/bin/bash"]
