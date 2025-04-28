@@ -9,8 +9,8 @@ nvm use
 pnpm store prune
 pnpm install --frozen-lockfile
 pnpm lint
-pnpm test
 pnpm build
+pnpm test
 pnpm dev
 ```
 
