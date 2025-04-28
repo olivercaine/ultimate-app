@@ -29,9 +29,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-          
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Install dependencies
         run: |
-          npm install -g pnpm@10.10.0
+          corepack prepare pnpm@10.10.0 --activate
           pnpm install --frozen-lockfile
           pnpm lint
           pnpm health-check
