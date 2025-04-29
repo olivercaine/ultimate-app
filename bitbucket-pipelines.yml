@@ -17,6 +17,9 @@ pipelines:
           - docker
           - turbo
         size: 4x
+        # runs-on:
+        #   - self.hosted
+        #   - linux.arm64        
         script:
           - mkdir -p .pnpm-store .turbo/cache
           - chown -R root:root .pnpm-store .turbo/cache
