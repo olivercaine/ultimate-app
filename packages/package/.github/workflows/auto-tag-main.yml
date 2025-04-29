@@ -1,0 +1,35 @@
+name: Auto Tag Main Branch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for tagging purposes
+
+      # Set up Git configuration
+      - name: Set up Git
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+
+      # Generate a tag (e.g., using a timestamp)
+      - name: Create Tag
+        id: tag
+        run: |
+          TAG="v$(date +'%Y%m%d%H%M%S')"
+          git tag $TAG
+          echo "tag_name=$TAG" >> $GITHUB_OUTPUT
+
+      # Push the tag to the repository
+      - name: Push Tag
+        run: |
+          git push origin ${{ steps.tag.outputs.tag_name }}

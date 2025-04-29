@@ -1,5 +1,5 @@
 [![Node.js CI](https://github.com/olivercaine/typescript-library-boilerplate/actions/workflows/node.js.yml/badge.svg)](https://github.com/olivercaine/typescript-library-boilerplate/actions/workflows/node.js.yml)
-[![Coverage Status](https://coveralls.io/repos/github/goldenbearkin/typescript-library-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/goldenbearkin/typescript-library-boilerplate?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/olivercaine/typescript-library-boilerplate/badge.svg?branch=main)](https://coveralls.io/github/olivercaine/typescript-library-boilerplate?branch=main)
 
 # TypeScript Library Boilerplate
 

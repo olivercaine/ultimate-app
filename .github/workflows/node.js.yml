@@ -1,4 +1,4 @@
-name: PNPM install & health check
+name: Install, lint, build and test
 
 on:
   push:
@@ -31,9 +31,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install -g pnpm@10.9.0
-          pnpm install --frozen-lockfile
+          corepack enable
+          corepack prepare pnpm@10.10.0 --activate
+          pnpm install
           pnpm lint
-          pnpm health-check
-          pnpm test
           pnpm build
+          pnpm test
+          
