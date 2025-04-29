@@ -1,6 +1,7 @@
 definitions:
   caches:
-    pnpm: $BITBUCKET_CLONE_DIR/.pnpm-store
+    pnpm: .pnpm-store
+    turbo: .turbo/cache
   services:
     docker: 
       memory: 12000
@@ -11,17 +12,25 @@ pipelines:
         name: Install, lint, build and test
         services:
           - docker
-        size: 4x
-        # runs-on:
-        #   - self.hosted
-        #   - linux.arm64
-        script:
-          - docker build . -f Dockerfile.ci -t ci
-          - >
-            docker run --rm
-            -v ${PWD}/.pnpm-store:/root/.pnpm-store
-            -v ${PWD}:/app
-            -w /app ci sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build && pnpm run test'
         caches:
           - pnpm
           - docker
+          - turbo
+        size: 4x
+        # runs-on:
+        #   - self.hosted
+        #   - linux.arm64        
+        script:
+          - mkdir -p .pnpm-store .turbo/cache
+          - chown -R root:root .pnpm-store .turbo/cache
+          - chmod -R 777 .pnpm-store .turbo/cache
+          - docker build . -f Dockerfile.ci -t ci
+          - >
+            docker run --rm
+            --user 0:0
+            -e PNPM_STORE_DIR=/app/.pnpm-store
+            -v ${PWD}/.pnpm-store:/app/.pnpm-store
+            -v ${PWD}/.turbo/cache:/app/.turbo/cache
+            -v ${PWD}:/app
+            -w /app
+            ci sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build && pnpm run test'
