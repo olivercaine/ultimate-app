@@ -3,7 +3,7 @@ definitions:
     pnpm: .pnpm-store
     turbo: .turbo/cache
   services:
-    docker: 
+    docker:
       memory: 12000
 
 pipelines:
