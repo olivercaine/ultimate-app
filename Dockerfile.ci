@@ -1,3 +1,6 @@
+# docker build . -f Dockerfile.ci -t olliecaine/node-20-corepack-pnpm:1.0
+# docker push olliecaine/node-20-corepack-pnpm:1.0
+
 FROM node:20.11.0-slim
 
 # Set working directory
@@ -7,7 +10,7 @@ WORKDIR /app
 RUN corepack enable
 
 # Install PNPM
-RUN corepack prepare pnpm@10.9.0 --activate
+RUN corepack prepare pnpm@10.10.0 --activate
 
 # Show versions
 RUN node --version
