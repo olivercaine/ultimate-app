@@ -22,6 +22,7 @@ RUN node --version
 RUN npm --version
 RUN corepack --version
 RUN pnpm --version
+RUN git --version
 
 # Default command to start a bash shell
 CMD ["/bin/bash"]
