@@ -4,9 +4,9 @@ definitions:
   caches:
     pnpm: .pnpm-store
     turbo: .turbo/cache
-  services:
-    docker:
-      memory: 12000
+  # services:
+  #   docker:
+  #     memory: 12000
 
 pipelines:
   default:
@@ -18,7 +18,7 @@ pipelines:
           - pnpm
           - docker
           - turbo
-        size: 4x
+        # size: 4x
         # runs-on:
         #   - self.hosted
         #   - linux.arm64        
