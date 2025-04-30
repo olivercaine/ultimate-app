@@ -1,12 +1,10 @@
 definitions:
-  clone:
-    depth: full
   caches:
     pnpm: .pnpm-store
     turbo: .turbo/cache
   services:
     docker:
-      memory: 2048
+      memory: 12000
 
 pipelines:
   default:
@@ -18,7 +16,7 @@ pipelines:
           - pnpm
           - docker
           - turbo
-        # size: 4x
+        size: 4x
         # runs-on:
         #   - self.hosted
         #   - linux.arm64        
@@ -27,23 +25,12 @@ pipelines:
           - chown -R root:root .pnpm-store .turbo/cache
           - chmod -R 777 .pnpm-store .turbo/cache
           - docker build . -f Dockerfile.ci -t ci
-          - echo "Checking for .git directory:"
-          - ls -alh .git || echo "No .git directory found"
           - >
             docker run --rm
             --user 0:0
             -e PNPM_STORE_DIR=/app/.pnpm-store
-            -v ${PWD}/.git:/app/.git
             -v ${PWD}/.pnpm-store:/app/.pnpm-store
             -v ${PWD}/.turbo/cache:/app/.turbo/cache
             -v ${PWD}:/app
             -w /app
-            ci sh -c '
-              git --version &&
-              git config --global --add safe.directory /app &&
-              git checkout HEAD &&
-              pnpm install --ignore-scripts --frozen-lockfile &&
-              pnpm run lint &&
-              pnpm run build &&
-              pnpm run test
-            '
+            ci sh -c 'pnpm install --frozen-lockfile && pnpm run lint && pnpm run build && pnpm run test'
