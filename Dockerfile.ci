@@ -6,6 +6,12 @@ FROM node:20.11.0-slim
 # Set working directory
 WORKDIR /app
 
+
+# Install git and clean up
+RUN apt-get update && \
+    apt-get install -y git ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
 # Enable Corepack
 RUN corepack enable
 
@@ -13,10 +19,11 @@ RUN corepack enable
 RUN corepack prepare pnpm@10.10.0 --activate
 
 # Show versions
-RUN node --version
-RUN npm --version
-RUN corepack --version
-RUN pnpm --version
+RUN node --version && \
+    npm --version && \
+    corepack --version && \
+    pnpm --version && \
+    git --version
 
 # Default command to start a bash shell
 CMD ["/bin/bash"]
