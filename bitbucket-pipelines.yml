@@ -1,32 +1,59 @@
-definitions:
+# image: atlassian/default-image:5
+
+options:
+  max-time: 10 # Applies to each step (not total pipeline run). Can be overridden at step level.
+  size: 2x # Use 4x size for steps to ensure sufficient resources
   clone:
-    depth: full
+    depth: full # Use full clone to ensure all git history is available for git commands
+
+definitions:
   caches:
     pnpm: .pnpm-store
     turbo: .turbo/cache
+  
   services:
-    docker:
-      memory: 2048
-
-pipelines:
-  default:
-    - step:
-        name: Install, lint, build and test
+    size-1x-docker-memory:
+      type: docker
+      memory: 3072
+    size-2x-docker-memory:
+      type: docker
+      memory: 7168
+    size-4x-docker-memory:
+      type: docker
+      memory: 15360
+    size-8x-docker-memory:
+      type: docker
+      memory: 31744
+  
+  steps:
+    - step: &CreateBuildEnvironment
+        name: Create build environment
         services:
-          - docker
+          - size-1x-docker-memory
         caches:
           - pnpm
           - docker
           - turbo
-        # size: 4x
-        # runs-on:
-        #   - self.hosted
-        #   - linux.arm64        
         script:
+          - docker build . -f Dockerfile.ci -t ci
+          - docker save ci | gzip > ci.tar.gz
+          - echo "Add script step `- docker load < ci.tar.gz` to your script to load the image in subsequent steps"
+        artifacts:
+          - ci.tar.gz
+
+    - step: &InstallLintCompileAndBuild
+        name: Install, lint, compile and build
+        services:
+          - size-1x-docker-memory
+        caches:
+          - pnpm
+          - docker
+          - turbo
+        script:
+          - docker load < ci.tar.gz
           - mkdir -p .pnpm-store .turbo/cache
           - chown -R root:root .pnpm-store .turbo/cache
           - chmod -R 777 .pnpm-store .turbo/cache
-          - docker build . -f Dockerfile.ci -t ci
           - echo "Checking for .git directory:"
           - ls -alh .git || echo "No .git directory found"
           - >
@@ -47,3 +74,10 @@ pipelines:
               pnpm run build &&
               pnpm run test
             '
+        artifacts:
+          - dist/**
+
+pipelines:
+  default:
+    - step: *CreateBuildEnvironment
+    - step: *InstallLintCompileAndBuild

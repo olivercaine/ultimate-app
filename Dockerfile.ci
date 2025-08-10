@@ -1,6 +1,5 @@
 # docker build . -f Dockerfile.ci -t olliecaine/node-20-corepack-pnpm:1.0
 # docker push olliecaine/node-20-corepack-pnpm:1.0
-
 FROM node:20.11.0-slim
 
 # Set working directory
