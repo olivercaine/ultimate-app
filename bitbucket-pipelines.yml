@@ -1,10 +1,13 @@
-# image: atlassian/default-image:5
+image: atlassian/default-image:4
 
 options:
   max-time: 10 # Applies to each step (not total pipeline run). Can be overridden at step level.
   size: 2x # Use 4x size for steps to ensure sufficient resources
   clone:
     depth: full # Use full clone to ensure all git history is available for git commands
+  runtime:
+    cloud:
+      arch: arm # Set ARM architecture globally for all steps    
 
 definitions:
   caches:
