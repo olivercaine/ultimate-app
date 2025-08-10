@@ -6,7 +6,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint --affected",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "test": "turbo run test",
+    "test": "turbo run test --affected",
     "clean": "rimraf {apps,packages}/**/{node_modules,dist,.next,.turbo} -g && rimraf node_modules",
     "prepare": "husky install",
     "health-check": "turbo run health-check",
