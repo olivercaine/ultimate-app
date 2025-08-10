@@ -4,6 +4,7 @@
     "lint": {
       "cache": true
     },
+    "lint": {},
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
