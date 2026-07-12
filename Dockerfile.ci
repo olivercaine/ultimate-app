@@ -18,12 +18,19 @@ RUN corepack enable
 # Install PNPM
 RUN corepack prepare pnpm@10.10.0 --activate
 
+# Force ANSI colour in non-TTY CI / docker runs (Bitbucket log UI, turbo prefixes,
+# vitest/eslint failures). Override at runtime with -e if needed.
+ENV FORCE_COLOR=1 \
+    CLICOLOR_FORCE=1 \
+    TERM=xterm-256color
+
 # Show versions
-RUN node --version && \
-    npm --version && \
-    corepack --version && \
-    pnpm --version && \
-    git --version
+RUN printf '%s\n' \
+      "node     $(node --version | sed 's/^v//')" \
+      "npm      $(npm --version)" \
+      "corepack $(corepack --version)" \
+      "pnpm     $(pnpm --version)" \
+      "git      $(git --version | awk '{print $3}')"
 
 # Default command to start a bash shell
 CMD ["/bin/bash"]

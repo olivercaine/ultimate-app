@@ -47,7 +47,7 @@ definitions:
     - step: &InstallLintCompileAndBuild
         name: Install, lint, compile and build
         services:
-          - size-1x-docker-memory
+          - size-2x-docker-memory
         caches:
           - pnpm
           - docker
